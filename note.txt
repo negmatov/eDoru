@@ -1,0 +1,21 @@
+# Импорт частей SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# Создайте URL базы данных для SQLAlchemy
+# Подключаемся к базе данных (открываем файл с базой данных).
+SQLALCHEMY_DATABASE_URL = "mysql://u0946_pharm:6M_0fym5@31.31.198.209/u0946565_pharmdb"  # u0946565.plsk.regruhosting.ru
+
+# Создайте SQLAlchemy engine
+# Cоздание «engine» SQLAlchemy и использовать это engine в других местах.
+engine = create_engine(SQLALCHEMY_DATABASE_URL, encoding='utf-8', echo=True)
+
+# Создать SessionLocalкласс
+# Каждый экземпляр SessionLocalкласса будет сеансом базы данных.
+# Чтобы создать SessionLocalкласс, используйте функцию sessionmaker:
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Создать Baseкласс
+# Функцией declarative_base(), которая возвращает класс.
+Base = declarative_base()
